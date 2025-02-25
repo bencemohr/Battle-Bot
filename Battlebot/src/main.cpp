@@ -1,12 +1,28 @@
 #include <Arduino.h>
+#include <SoftwareSerial.h>
+
+// Bluetooth
+SoftwareSerial btSerial(10,11);
 
 // Define motor control pins
-const int MOTOR_A1 = 3;
-const int MOTOR_A2 = 9;
-const int MOTOR_B1 = 11;
-const int MOTOR_B2 = 10;
+const int MOTOR_A1 = 11;
+const int MOTOR_A2 = 10;
+const int MOTOR_B1 = 9;
+const int MOTOR_B2 = 6;
+// Define sensor pins
 const int SENSOR_TRIGGER = 8;
 const int SENSOR_ECHO = 7;
+// Define line sensor pins
+const int LINE1 = A1;
+const int LINE2 = A2;
+const int LINE3 = A3;
+const int LINE4 = A4;
+const int LINE5 = A5;
+const int LINE6 = A6;
+const int LINE7 = A7;
+// Define gripper pins
+
+// Define rotation sensors
 
 void setup() {
   // Set motor pins as outputs
@@ -16,7 +32,16 @@ void setup() {
   pinMode(MOTOR_B2, OUTPUT);
   pinMode(SENSOR_TRIGGER, OUTPUT);
   pinMode(SENSOR_ECHO, INPUT);
+  pinMode(LINE1, INPUT);
+  pinMode(LINE2, INPUT);
+  pinMode(LINE3, INPUT);
+  pinMode(LINE4, INPUT);
+  pinMode(LINE5, INPUT);
+  pinMode(LINE6, INPUT);
+  pinMode(LINE7, INPUT);
   Serial.begin(9600);
+  btSerial.begin(9600);
+  Serial.println("--### ARDUINO RESET ###--");
 }
 
 //Moving functions
@@ -52,7 +77,7 @@ void moveForward(int t) {
   analogWrite(MOTOR_B2, 0);
   delay(t);
 }
-
+/*
 long sense() {
   //Sonar control and distance calculations
   digitalWrite(SENSOR_TRIGGER, LOW);
@@ -88,8 +113,9 @@ void avoid(long distance) {
   }
 
 }
-
+*/
 void loop() {
+  /*
   //Sensing
   long distance = sense();
   //Debug
@@ -97,6 +123,17 @@ void loop() {
   Serial.print(distance);
   Serial.println(" cm.");
   avoid(distance);
+  */
+  Serial.println(analogRead(LINE1));
+  Serial.println(analogRead(LINE2));
+  Serial.println(analogRead(LINE3));
+  Serial.println(analogRead(LINE4));
+  Serial.println(analogRead(LINE5));
+  Serial.println(analogRead(LINE6));
+  Serial.println(analogRead(LINE7));
+  Serial.println("----BREAK LINE---");
+
+  delay(1000);
 }
 
 /*
