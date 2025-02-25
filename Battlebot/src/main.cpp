@@ -1,8 +1,12 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
+#include <Adafruit_NeoPixel.h>
 
-// Bluetooth
-SoftwareSerial btSerial(10,11);
+// Bluetooth debugging
+SoftwareSerial btSerial(2,3);
+
+// Define time
+unsigned long timeZero = 0;
 
 // Define motor control pins
 const int MOTOR_A1 = 11;
@@ -22,16 +26,32 @@ const int LINE6 = A6;
 const int LINE7 = A7;
 // Define gripper pins
 
-// Define rotation sensors
+// Define rotation sensor pins
+
+// Define neo pixel pins
+const int LED_PIN = 5;
+const int LED_COUNT = 4;
+Adafruit_NeoPixel leds = Adafruit_NeoPixel(LED_COUNT,LED_PIN,NEO_RGB + NEO_KHZ800);
 
 void setup() {
+  leds.begin();
+  leds.setBrightness(100);
+  leds.setPixelColor(0,leds.Color(255,0,0));
+  leds.show();
+  delay(500);
   // Set motor pins as outputs
   pinMode(MOTOR_A1, OUTPUT);
   pinMode(MOTOR_A2, OUTPUT);
   pinMode(MOTOR_B1, OUTPUT);
   pinMode(MOTOR_B2, OUTPUT);
+  leds.setPixelColor(3,leds.Color(255,0,0));
+  leds.show();
+  delay(500);
   pinMode(SENSOR_TRIGGER, OUTPUT);
   pinMode(SENSOR_ECHO, INPUT);
+  leds.setPixelColor(2,leds.Color(255,0,0));
+  leds.show();
+  delay(500);
   pinMode(LINE1, INPUT);
   pinMode(LINE2, INPUT);
   pinMode(LINE3, INPUT);
@@ -39,9 +59,33 @@ void setup() {
   pinMode(LINE5, INPUT);
   pinMode(LINE6, INPUT);
   pinMode(LINE7, INPUT);
+  leds.setPixelColor(1,leds.Color(255,0,0));
+  leds.show();
+  delay(500);
   Serial.begin(9600);
+  delay(500);
   btSerial.begin(9600);
   Serial.println("--### ARDUINO RESET ###--");
+  btSerial.println("BT Ready");
+  btSerial.println("--### ARDUINO RESET ###--");
+
+  leds.fill(leds.Color(0,255,0),0,4);
+  leds.show();
+  delay(500);
+  leds.clear();
+  leds.show();
+  delay(500);
+  leds.fill(leds.Color(0,255,0),0,4);
+  leds.show();
+  delay(500);
+  leds.clear();
+  leds.show();
+  delay(500);
+  leds.fill(leds.Color(0,255,0),0,4);
+  leds.show();
+  delay(500);
+  leds.clear();
+  leds.show();
 }
 
 //Moving functions
@@ -76,6 +120,13 @@ void moveForward(int t) {
   analogWrite(MOTOR_B1, 255);
   analogWrite(MOTOR_B2, 0);
   delay(t);
+}
+
+void stop() {
+  analogWrite(MOTOR_A1, 0);
+  analogWrite(MOTOR_A2,  0);
+  analogWrite(MOTOR_B1, 0);
+  analogWrite(MOTOR_B2, 0);
 }
 /*
 long sense() {
@@ -114,6 +165,41 @@ void avoid(long distance) {
 
 }
 */
+
+//Commands from BT
+void readBT()
+{
+  if (btSerial.available())
+  {
+    char input = btSerial.read();
+
+    btSerial.print("Recieved command: ");
+    btSerial.println(input);
+
+    switch (input)
+    {
+      case 'F': 
+        moveForward(1000);
+        break;
+      case 'B':
+        moveBackward(1000);
+        break;
+      case 'L':
+        moveLeft(1000);
+        break;
+      case 'R':
+        moveRight(1000);
+        break;
+      case 'S':
+        setup();
+        break;
+      default:
+        btSerial.println("Invalid command");
+        break;
+    }
+  }
+}
+
 void loop() {
   /*
   //Sensing
@@ -124,6 +210,7 @@ void loop() {
   Serial.println(" cm.");
   avoid(distance);
   */
+  /*
   Serial.println(analogRead(LINE1));
   Serial.println(analogRead(LINE2));
   Serial.println(analogRead(LINE3));
@@ -134,6 +221,8 @@ void loop() {
   Serial.println("----BREAK LINE---");
 
   delay(1000);
+  */
+   readBT();
 }
 
 /*
