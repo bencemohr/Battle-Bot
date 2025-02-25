@@ -32,6 +32,8 @@ const int LINE7 = A7;
 const int LED_PIN = 5;
 const int LED_COUNT = 4;
 Adafruit_NeoPixel leds = Adafruit_NeoPixel(LED_COUNT,LED_PIN,NEO_RGB + NEO_KHZ800);
+// Define global calibration variables
+
 
 void setup() {
   leds.begin();
@@ -198,6 +200,11 @@ void readBT()
         break;
     }
   }
+}
+
+void calibrate()
+{
+
 }
 
 void loop() {
