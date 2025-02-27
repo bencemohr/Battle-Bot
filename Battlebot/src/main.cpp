@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <declared.cpp>
+
 /*
 AUTH BY:
 JOEY HARMS
@@ -34,7 +35,7 @@ void setup() {
   pinMode(LINE5, INPUT);
   pinMode(LINE6, INPUT);
   pinMode(LINE7, INPUT);
-  pinMode(GRIP, OUTPUT);
+  //pinMode(GRIP, OUTPUT);
   _leds.setPixelColor(0,_leds.Color(255,0,0));
   _leds.show();
   delay(500);
@@ -68,13 +69,13 @@ void setup() {
 
 //INCLUDES
 
+//#include <gripper.cpp>
 #include <movement.cpp>
 #include <bluetooth.cpp>
 #include <sens_front.cpp>
 #include <avoid.cpp>
 #include <line.cpp>
 #include <calibrate.cpp>
-#include <gripper.cpp>
 void loop() {
   /*
   //Sensing

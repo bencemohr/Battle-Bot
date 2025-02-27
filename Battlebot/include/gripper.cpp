@@ -1,4 +1,6 @@
-void Grip(int t) 
+void grip() 
 {
-    analogWrite(GRIP, 255);
+    G.write(180);
+    delay(500);
+    G.write(0);
 }

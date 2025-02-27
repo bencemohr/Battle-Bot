@@ -1,6 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <SoftwareSerial.h>
 
+
 // Bluetooth debugging
 SoftwareSerial btSerial(2,3);
 
@@ -28,7 +29,7 @@ const int LINE5 = A5;
 const int LINE6 = A6;
 const int LINE7 = A7;
 // Define gripper pins
-const int GRIP = 9;
+//# - grip.attach(9);
 // Define rotation sensor pins
 
 // Define neo pixel pins
