@@ -30,6 +30,10 @@ void readBT()
         stop();
         input='x';
         btSerial.println("Returning S");
+      case 'G':
+        grip(2);
+        input='G';
+        break;
       default:
         btSerial.println("Invalid command");
         input='x';

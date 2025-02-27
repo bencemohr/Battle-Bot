@@ -34,6 +34,7 @@ void setup() {
   pinMode(LINE5, INPUT);
   pinMode(LINE6, INPUT);
   pinMode(LINE7, INPUT);
+  pinMode(GRIP, OUTPUT);
   _leds.setPixelColor(0,_leds.Color(255,0,0));
   _leds.show();
   delay(500);
@@ -73,7 +74,7 @@ void setup() {
 #include <avoid.cpp>
 #include <line.cpp>
 #include <calibrate.cpp>
-
+#include <gripper.cpp>
 void loop() {
   /*
   //Sensing
