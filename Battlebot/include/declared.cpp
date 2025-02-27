@@ -14,8 +14,8 @@ bool _calibrationRunning = false;
 // Define motor control pins
 const int MOTOR_A1 = 11;
 const int MOTOR_A2 = 10;
-const int MOTOR_B1 = 9;
-const int MOTOR_B2 = 6;
+const int MOTOR_B1 = 6;
+const int MOTOR_B2 = 5;
 // Define sensor pins
 const int SENSOR_TRIGGER = 8;
 const int SENSOR_ECHO = 7;
@@ -28,11 +28,11 @@ const int LINE5 = A5;
 const int LINE6 = A6;
 const int LINE7 = A7;
 // Define gripper pins
-
+const int GRIP = 9;
 // Define rotation sensor pins
 
 // Define neo pixel pins
-const int LED_PIN = 5;
+const int LED_PIN = 4;
 const int LED_COUNT = 4;
 Adafruit_NeoPixel _leds = Adafruit_NeoPixel(LED_COUNT,LED_PIN,NEO_RGB + NEO_KHZ800);
 // Define global calibration variables

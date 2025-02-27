@@ -50,10 +50,5 @@ void calibrate(){
             _leds.fill(_leds.Color(255,144,0),0,4);
             _leds.show();
         }
-        
-        if (readBT() == 'S')
-        {
-            quit = true;
-        }
     }
 }

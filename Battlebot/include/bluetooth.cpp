@@ -1,5 +1,5 @@
 //Commands from BT
-char readBT()
+void readBT()
 {
   if (btSerial.available())
   {
@@ -12,24 +12,28 @@ char readBT()
     {
       case 'F': 
         moveForward(1000);
+        input='x';
         break;
       case 'B':
         moveBackward(1000);
+        input='x';
         break;
       case 'L':
         moveLeft(1000);
+        input='x';
         break;
       case 'R':
         moveRight(1000);
+        input='x';
         break;
       case 'S':
-        setup();
+        stop();
+        input='x';
         btSerial.println("Returning S");
-        return 'S';
       default:
         btSerial.println("Invalid command");
+        input='x';
         break;
     }
   }
-  return NULL;
 }
