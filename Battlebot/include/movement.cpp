@@ -4,7 +4,7 @@ void moveBackward(int t) {
     analogWrite(MOTOR_A1, 180);
     analogWrite(MOTOR_A2, 0);
     analogWrite(MOTOR_B1, 0);
-    analogWrite(MOTOR_B2, 185);
+    analogWrite(MOTOR_B2, 205);
     delay(t);
   }
   
