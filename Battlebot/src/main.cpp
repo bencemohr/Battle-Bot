@@ -14,6 +14,7 @@ void setup() {
   _leds.setBrightness(100);
   _leds.setPixelColor(3,_leds.Color(255,0,0));
   _leds.show();
+  //gripper.attach(9);
   delay(500);
   // Set motor pins as outputs
   pinMode(MOTOR_A1, OUTPUT);
@@ -69,7 +70,7 @@ void setup() {
 
 //INCLUDES
 
-//#include <gripper.cpp>
+#include <gripper.cpp>
 #include <movement.cpp>
 #include <bluetooth.cpp>
 #include <sens_front.cpp>
@@ -90,9 +91,16 @@ void loop() {
 
   //readLine();
   readBT();
+  /*
   if (digitalRead(BUTTON1) == 0 && _calibrationRunning == false){
     _calibrationRunning = true;
     btSerial.println("Calibration job sent.");
     calibrate();
   }
+  */
+  if (digitalRead(BUTTON1)==0)
+  {
+    grip();
+  }
+
 }

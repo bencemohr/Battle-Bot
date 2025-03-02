@@ -1,5 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include <SoftwareSerial.h>
+#include <Servo.h>
 
 
 // Bluetooth debugging
@@ -21,15 +22,16 @@ const int MOTOR_B2 = 5;
 const int SENSOR_TRIGGER = 8;
 const int SENSOR_ECHO = 7;
 // Define line sensor pins
-const int LINE1 = A1;
-const int LINE2 = A2;
-const int LINE3 = A3;
-const int LINE4 = A4;
-const int LINE5 = A5;
-const int LINE6 = A6;
-const int LINE7 = A7;
+const int LINE1 = A0;
+const int LINE2 = A1;
+const int LINE3 = A2;
+const int LINE4 = A3;
+const int LINE5 = A4;
+const int LINE6 = A5;
+const int LINE7 = A6;
+const int LINE8 = A7;
 // Define gripper pins
-//# - grip.attach(9);
+Servo gripper;
 // Define rotation sensor pins
 
 // Define neo pixel pins
@@ -37,3 +39,4 @@ const int LED_PIN = 4;
 const int LED_COUNT = 4;
 Adafruit_NeoPixel _leds = Adafruit_NeoPixel(LED_COUNT,LED_PIN,NEO_RGB + NEO_KHZ800);
 // Define global calibration variables
+int BOOST = 20;

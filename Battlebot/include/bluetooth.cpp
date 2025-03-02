@@ -34,11 +34,24 @@ void readBT()
         stop();
         input='x';
         btSerial.println("Stopping");
-      // case 'G':
-        // grip();
-        // input='x';
-        // btSerial.println("Gripping");
-        // break;
+        break;
+      case 'G':
+        grip();
+        input='x';
+        btSerial.println("Gripping");
+        break;
+      case '+':
+        BOOST += 10;
+        input='x';
+        btSerial.print("Boost is now ");
+        btSerial.println(BOOST);
+        break;
+      case '-':
+        BOOST -= 10;
+        input='x';
+        btSerial.print("Boost is now ");
+        btSerial.println(BOOST);
+        break;
       default:
         btSerial.println("Invalid command");
         input='x';
