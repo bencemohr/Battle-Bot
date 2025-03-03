@@ -36,7 +36,7 @@ void readBT()
         btSerial.println("Stopping");
         break;
       case 'G':
-        grip();
+        grip(2);
         input='x';
         btSerial.println("Gripping");
         break;

@@ -7,7 +7,7 @@
 SoftwareSerial btSerial(2,3);
 
 // Define time
-unsigned long _timeZero = 0;
+unsigned long _timeZero = 500;
 
 // Define callibrate button
 const int BUTTON1 = 8;
@@ -31,7 +31,9 @@ const int LINE6 = A5;
 const int LINE7 = A6;
 const int LINE8 = A7;
 // Define gripper pins
-Servo gripper;
+//Servo gripper;
+const int GRIPPER = 9;
+bool _Grip = false;
 // Define rotation sensor pins
 
 // Define neo pixel pins

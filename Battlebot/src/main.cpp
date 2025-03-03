@@ -36,7 +36,8 @@ void setup() {
   pinMode(LINE5, INPUT);
   pinMode(LINE6, INPUT);
   pinMode(LINE7, INPUT);
-  //pinMode(GRIP, OUTPUT);
+  pinMode(GRIPPER, OUTPUT);
+  digitalWrite(GRIPPER, LOW);
   _leds.setPixelColor(0,_leds.Color(255,0,0));
   _leds.show();
   delay(500);
@@ -89,7 +90,7 @@ void loop() {
   */
   
 
-  //readLine();
+  readLine();
   readBT();
   /*
   if (digitalRead(BUTTON1) == 0 && _calibrationRunning == false){
@@ -98,9 +99,10 @@ void loop() {
     calibrate();
   }
   */
-  if (digitalRead(BUTTON1)==0)
+  if (digitalRead(BUTTON1) == 0)
   {
-    grip();
+    grip(985);
+    _Grip = true;
   }
 
 }

@@ -1,13 +1,26 @@
-void grip() 
+void grip(int pulse)
 {
-    gripper.attach(9);
-    gripper.write(180);
-    delay(1000);
-    gripper.write(90);
-    delay(1000);
-    gripper.write(0);
-    delay(1000);
-    gripper.write(90);
-    delay(200);
-    gripper.detach();
+    while (_Grip == true)    
+    {
+        static long unsigned int timer = 0;
+        static int lastPulse = 0;
+        if (millis()>timer)
+        {
+            if (pulse > 0)
+            {
+                lastPulse = pulse;
+            }
+            else
+            {
+                pulse = lastPulse;
+            }
+            
+            digitalWrite(GRIPPER, HIGH);
+            delayMicroseconds(pulse);
+            digitalWrite(GRIPPER, LOW);
+            timer=millis()+20;
+        }
+    }
+
+
 }
