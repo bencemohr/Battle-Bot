@@ -78,6 +78,7 @@ void setup() {
 #include <avoid.cpp>
 #include <line.cpp>
 #include <calibrate.cpp>
+#include <assignment.cpp>
 void loop() {
   /*
   //Sensing
@@ -90,8 +91,8 @@ void loop() {
   */
   
 
-  readLine();
-  readBT();
+  //readLine();
+  //readBT();
   /*
   if (digitalRead(BUTTON1) == 0 && _calibrationRunning == false){
     _calibrationRunning = true;
@@ -101,8 +102,7 @@ void loop() {
   */
   if (digitalRead(BUTTON1) == 0)
   {
-    grip(985);
-    _Grip = true;
+    assigment();
   }
 
 }
