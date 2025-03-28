@@ -1,6 +1,7 @@
 //Moving functions
 
 void moveBackward(long t) {
+    _leds.fill((255,255,255), 1, 2);
     analogWrite(MOTOR_A1, 255);
     analogWrite(MOTOR_A2, 0);
     analogWrite(MOTOR_B1, 0);
@@ -53,4 +54,13 @@ void moveBackward(long t) {
     analogWrite(MOTOR_A2,  0);
     analogWrite(MOTOR_B1, 0);
     analogWrite(MOTOR_B2, 0);
+  }
+
+  void spin()
+  {
+    analogWrite(MOTOR_A1, 255);
+    analogWrite(MOTOR_A2,  0);
+    analogWrite(MOTOR_B1, 255);
+    analogWrite(MOTOR_B2, 0);
+    delay(500);
   }
