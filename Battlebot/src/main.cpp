@@ -74,15 +74,32 @@ void setup() {
 #include <line.cpp>
 #include <calibrate.cpp>
 #include <assignment.cpp>
+#include <sens_right.cpp>
+#include <sens_left.cpp>
 void loop() {
   
+  moveForward(10);
+
   //Sensing
   long distance = sense();
+  long distanceRight = senseRight();
+  long distanceLeft = senseLeft();
   //Debug
 
   if (digitalRead(BUTTON1) == HIGH)
   {
-    spin();
+    moveForward(1);
+    if (distance < 18)
+    {
+      stop();
+      if (distanceRight < 10)
+      {
+        moveLeftSharp(1);
+      } else if (distanceLeft < 10)
+      {
+        moveRightSharp(1);
+      }
+    }
   }
 
 }
