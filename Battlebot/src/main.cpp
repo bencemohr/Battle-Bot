@@ -82,24 +82,31 @@ void loop() {
 
   //Sensing
   long distance = sense();
-  long distanceRight = senseRight();
-  long distanceLeft = senseLeft();
+  // long distanceRight = senseRight();
+  // long distanceLeft = senseLeft();
   //Debug
 
-  if (digitalRead(BUTTON1) == HIGH)
-  {
-    moveForward(1);
-    if (distance < 18)
-    {
-      stop();
-      if (distanceRight < 10)
-      {
-        moveLeftSharp(1);
-      } else if (distanceLeft < 10)
-      {
-        moveRightSharp(1);
-      }
-    }
-  }
+  // if (digitalRead(BUTTON1) == HIGH)
+  // {
+  //   sense();
+  //   if (distance < 18)
+  //   {
+  //     senseLeft();
+  //     if (distanceLeft < 18)
+  //     {
+  //       moveRightSharp(1);
+  //     }
+  //   } else if (distanceRight < 18)
+  //   {
+  //     senseRight();
+  //     moveLeftSharp(1);
+  //   } else
+  //     {
+  //       moveForward(1);
+  //     }
+
+  // }
+  sense();
+  return distance;
 
 }
