@@ -83,24 +83,22 @@ void loop() {
   Serial.print(" | Right: "); Serial.println(rightDistance);
   delay(100);
 
-//   if (frontDistance < 15) {  // Reduced sensitivity to 15cm
-//       stop();
-//       delay(200);
+   if (frontDistance < 15) {  // Reduced sensitivity to 15cm
+       stop();
+       delay(200);
 
-//       if (rightDistance > 15) {  
-//           moveRightSharp(50);
-//           moveForward(50);
-//       } else if (leftDistance > 15) {  
-//           moveLeftSharp(50);
-//           moveForward(50);
-//       } else {  
-//           // DEAD END - Move backward before turning
-//           moveBackward(30);
-//           delay(500);
-//           moveRightSharp(100);
-//           moveRightSharp(100);
-//       }
-//   } else {
-//       moveForward(1);
-//   }
+       if (rightDistance > 15) {  
+           moveLeftSharp(100);
+       } else if (leftDistance > 15) {  
+           moveRightSharp(100);
+       } else {  
+           // DEAD END - Move backward before turning
+           moveBackward(300);
+           delay(500);
+           moveRightSharp(100);
+           moveRightSharp(100);
+       }
+   } else {
+       moveForward(1);
+   }
 }
