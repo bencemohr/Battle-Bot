@@ -77,36 +77,32 @@ void setup() {
 #include <sens_right.cpp>
 #include <sens_left.cpp>
 void loop() {
-  
-  moveForward(10);
+  long frontDistance = sense();
+  long leftDistance = senseLeft();
+  long rightDistance = senseRight();
 
-  //Sensing
-  long distance = sense();
-  // long distanceRight = senseRight();
-  // long distanceLeft = senseLeft();
-  //Debug
+  Serial.print("Front: "); Serial.print(frontDistance);
+  Serial.print(" | Left: "); Serial.print(leftDistance);
+  Serial.print(" | Right: "); Serial.println(rightDistance);
 
-  // if (digitalRead(BUTTON1) == HIGH)
-  // {
-  //   sense();
-  //   if (distance < 18)
-  //   {
-  //     senseLeft();
-  //     if (distanceLeft < 18)
-  //     {
-  //       moveRightSharp(1);
-  //     }
-  //   } else if (distanceRight < 18)
-  //   {
-  //     senseRight();
-  //     moveLeftSharp(1);
-  //   } else
-  //     {
-  //       moveForward(1);
-  //     }
+//   if (frontDistance < 15) {  // Reduced sensitivity to 15cm
+//       stop();
+//       delay(200);
 
-  // }
-  sense();
-  return distance;
-
+//       if (rightDistance > 15) {  
+//           moveRightSharp(50);
+//           moveForward(50);
+//       } else if (leftDistance > 15) {  
+//           moveLeftSharp(50);
+//           moveForward(50);
+//       } else {  
+//           // DEAD END - Move backward before turning
+//           moveBackward(30);
+//           delay(500);
+//           moveRightSharp(100);
+//           moveRightSharp(100);
+//       }
+//   } else {
+//       moveForward(1);
+//   }
 }
