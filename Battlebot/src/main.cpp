@@ -25,7 +25,11 @@ void setup() {
   _leds.show();
   delay(500);
   pinMode(SENSOR_TRIGGER_FRONT, OUTPUT);
-  pinMode(SENSOR_ECHO_FRONT, INPUT);
+  pinMode(SENSOR_ECHO_FRONT, INPUT);  
+  pinMode(SENSOR_TRIGGER_LEFT, OUTPUT);
+  pinMode(SENSOR_ECHO_LEFT, INPUT);
+  pinMode(SENSOR_TRIGGER_RIGHT, OUTPUT);
+  pinMode(SENSOR_ECHO_RIGHT, INPUT);
   _leds.setPixelColor(1,_leds.Color(255,0,0));
   _leds.show();
   delay(500);

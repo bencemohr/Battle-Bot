@@ -45,8 +45,8 @@ const int SENSOR_ECHO_FRONT = A0;
 const int SENSOR_TRIGGER_RIGHT = A4;
 const int SENSOR_ECHO_RIGHT = A5;
     //Sensor left
-const int SENSOR_TRIGGER_LEFT = A6;
-const int SENSOR_ECHO_LEFT = A7;
+const int SENSOR_TRIGGER_LEFT = 12;
+const int SENSOR_ECHO_LEFT = 13;
 // Define line sensor pins
 const int LINE3 = A3;
 const int LINE4 = A2;
@@ -55,7 +55,7 @@ const int LINE5 = A1;
     //Servo gripper;
     const int GRIPPER = 9;
     bool _Grip = false;
-    
+
 // Define neo pixel pins
 const int LED_PIN = 4;
 const int LED_COUNT = 4;

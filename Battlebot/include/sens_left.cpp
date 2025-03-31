@@ -7,8 +7,8 @@ long senseLeft() {
     delayMicroseconds(10);
     digitalWrite(SENSOR_TRIGGER_LEFT, LOW);
     
-    long duration = pulseIn(SENSOR_ECHO_LEFT, HIGH);
-    long distanceLeft = duration * 0.034 / 2;
+    long durationLeft = pulseIn(SENSOR_ECHO_LEFT, HIGH);
+    long distanceLeft = durationLeft * 0.034 / 2;
 
     btSerial.println(distanceLeft);
   
