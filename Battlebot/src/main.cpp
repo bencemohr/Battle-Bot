@@ -10,7 +10,6 @@ BENCE MOHR
 
 void setup() {
   Serial.end();
-  btSerial.end();
   _leds.begin();
   _leds.setBrightness(100);
   _leds.setPixelColor(3,_leds.Color(255,0,0));
@@ -43,11 +42,7 @@ void setup() {
   delay(500);
   Serial.begin(9600);
   delay(500);
-  btSerial.begin(9600);
-  pinMode(BUTTON1, INPUT);
   Serial.println("--### ARDUINO RESET ###--");
-  btSerial.println("BT Ready");
-  btSerial.println("--### ARDUINO RESET ###--");
 
   _leds.fill(_leds.Color(0,255,0),0,4);
   _leds.show();
@@ -72,11 +67,9 @@ void setup() {
 
 #include <gripper.cpp>
 #include <movement.cpp>
-#include <bluetooth.cpp>
 #include <sens_front.cpp>
 #include <avoid.cpp>
 #include <line.cpp>
-#include <calibrate.cpp>
 #include <assignment.cpp>
 #include <sens_right.cpp>
 #include <sens_left.cpp>
@@ -88,6 +81,7 @@ void loop() {
   Serial.print("Front: "); Serial.print(frontDistance);
   Serial.print(" | Left: "); Serial.print(leftDistance);
   Serial.print(" | Right: "); Serial.println(rightDistance);
+  delay(100);
 
 //   if (frontDistance < 15) {  // Reduced sensitivity to 15cm
 //       stop();

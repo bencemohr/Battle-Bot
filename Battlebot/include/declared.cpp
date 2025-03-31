@@ -1,5 +1,4 @@
 #include <Adafruit_NeoPixel.h>
-#include <SoftwareSerial.h>
 #include <Servo.h>
 
 /*
@@ -22,14 +21,8 @@ Grip = 9
 */
 
 
-// Bluetooth debugging
-SoftwareSerial btSerial(2,3);
-
 // Define time
 unsigned long _timeZero = 500;
-
-// Define callibrate button
-const int BUTTON1 = 8;
 
 // Define motor control pins
 const int MOTOR_A1 = 11;

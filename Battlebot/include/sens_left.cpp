@@ -10,7 +10,5 @@ long senseLeft() {
     long durationLeft = pulseIn(SENSOR_ECHO_LEFT, HIGH);
     long distanceLeft = durationLeft * 0.034 / 2;
 
-    btSerial.println(distanceLeft);
-  
     return distanceLeft;
   }

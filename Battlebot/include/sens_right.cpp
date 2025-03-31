@@ -9,8 +9,6 @@ long senseRight() {
     
     long duration = pulseIn(SENSOR_ECHO_RIGHT, HIGH);
     long distanceRight = duration * 0.034 / 2;
-
-    btSerial.println(distanceRight);
   
     return distanceRight;
   }
