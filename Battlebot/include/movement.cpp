@@ -1,7 +1,8 @@
 //Moving functions
 
 void moveBackward(long t) {
-    _leds.fill((255,255,255), 1, 2);
+    _leds.fill(_leds.Color(255, 255, 255), 3, 4);
+    _leds.show();
     analogWrite(MOTOR_A1, 255);
     analogWrite(MOTOR_A2, 0);
     analogWrite(MOTOR_B1, 0);

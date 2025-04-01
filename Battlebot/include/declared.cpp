@@ -35,11 +35,11 @@ const int MOTOR_B2 = 5;
 const int SENSOR_TRIGGER_FRONT = 3;
 const int SENSOR_ECHO_FRONT = A0;
     //Sensor right
-const int SENSOR_TRIGGER_RIGHT = A4;
-const int SENSOR_ECHO_RIGHT = A5;
+const int SENSOR_TRIGGER_RIGHT = 12;
+const int SENSOR_ECHO_RIGHT = 13;
     //Sensor left
-const int SENSOR_TRIGGER_LEFT = 12;
-const int SENSOR_ECHO_LEFT = 13;
+const int SENSOR_TRIGGER_LEFT = A4;
+const int SENSOR_ECHO_LEFT = A5;
 // Define line sensor pins
 const int LINE3 = A3;
 const int LINE4 = A2;
