@@ -88,15 +88,15 @@ void loop() {
        delay(200);
 
        if (frontDistance > 15) {  
-           moveForward(100);
+           moveForward(300);
        } else if (rightDistance > 15) {  
-           moveRightSharp(100);
+           moveRightSharp(300);
        } else {  
            // DEAD END - Move backward before turning
            spin();
            delay(1000);
        }
    } else {
-      moveLeft(100);
+      moveLeftSharp(30);
    }
 }

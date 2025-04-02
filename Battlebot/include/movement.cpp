@@ -1,7 +1,8 @@
 //Moving functions
 
 void moveBackward(long t) {
-    _leds.fill(_leds.Color(255, 255, 255), 3, 4);
+    _leds.clear(); 
+    _leds.fill(_leds.Color(255, 255, 255), 1, 3);
     _leds.show();
     analogWrite(MOTOR_A1, 255);
     analogWrite(MOTOR_A2, 0);
@@ -19,6 +20,11 @@ void moveBackward(long t) {
   }
 
   void moveLeftSharp(long t) {
+    _leds.clear();
+    _leds.clear();
+    _leds.setPixelColor(3,_leds.Color(255, 165, 0));
+    _leds.setPixelColor(0,_leds.Color(255, 165, 0));
+    _leds.show();
     analogWrite(MOTOR_A1, 0);
     analogWrite(MOTOR_A2, 255);
     analogWrite(MOTOR_B1, 0);
@@ -35,6 +41,10 @@ void moveBackward(long t) {
   }  
   
   void moveRightSharp(long t) {
+    _leds.clear();
+    _leds.show();
+    _leds.fill(_leds.Color(255, 165, 0), 1, 2);
+    _leds.show();
     analogWrite(MOTOR_A1, 200);
     analogWrite(MOTOR_A2, 0);
     analogWrite(MOTOR_B1, 255);
@@ -43,8 +53,14 @@ void moveBackward(long t) {
   }
   
   void moveForward(long t) {
+    _leds.clear();
+    _leds.show();
+    _leds.setPixelColor(0,_leds.Color(255, 0, 0));
+    _leds.setPixelColor(1,_leds.Color(255, 0, 0));
+    _leds.fill(_leds.Color(255, 255, 255), 2, 3);
+    _leds.show();
     analogWrite(MOTOR_A1, 0);
-    analogWrite(MOTOR_A2, 220);
+    analogWrite(MOTOR_A2, 230);
     analogWrite(MOTOR_B1, 255);
     analogWrite(MOTOR_B2, 0);
     delay(t);
@@ -63,5 +79,5 @@ void moveBackward(long t) {
     analogWrite(MOTOR_A2,  0);
     analogWrite(MOTOR_B1, 255);
     analogWrite(MOTOR_B2, 0);
-    delay(500);
+    delay(100);
   }
