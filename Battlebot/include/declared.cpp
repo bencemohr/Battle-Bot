@@ -49,7 +49,6 @@ const int LINE5 = A1;
 // Define gripper pins
     //Servo gripper;
     const int GRIPPER = 9;
-    bool _Grip = false;
 
 // Define neo pixel pins
 const int LED_PIN = 4;

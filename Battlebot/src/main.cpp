@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <declared.cpp>
+#include <SoftwareSerial.h>
 
 /*
 AUTH BY:
@@ -7,6 +8,8 @@ JOEY HARMS
 BENCE MOHR
 2025. Jan - Apr
 */
+
+SoftwareSerial btSerial(7, 2); // RX, TX
 
 void setup() {
   Serial.end();
@@ -36,13 +39,14 @@ void setup() {
   pinMode(LINE4, INPUT);
   pinMode(LINE5, INPUT);
   pinMode(GRIPPER, OUTPUT);
-  digitalWrite(GRIPPER, LOW);
   _leds.setPixelColor(0,_leds.Color(255,0,0));
   _leds.show();
   delay(500);
   Serial.begin(9600);
+  btSerial.begin(9600);
   delay(500);
   Serial.println("--### ARDUINO RESET ###--");
+  btSerial.println("--### ARDUINO RESET ###--");
 
   _leds.fill(_leds.Color(0,255,0),0,4);
   _leds.show();
@@ -74,6 +78,35 @@ void setup() {
 #include <sens_right.cpp>
 #include <sens_left.cpp>
 #include <primed.cpp>
+
+long getFilteredDistance(long (*senseFunc)()) {
+    long total = 0;
+    for (int i = 0; i < 5; i++) {
+        total += senseFunc();
+        delay(10);  // Small delay between readings
+    }
+    return total / 5;  // Return the average
+}
+
+void checkIfStuck(long frontDistance, long leftDistance, long rightDistance) {
+    const long stuckThresholdFront = 7; // Threshold distance in cm to consider "stuck"
+    const long stuckThresholdSides = 2; // Threshold distance in cm to consider "stuck"
+
+    if (frontDistance < stuckThresholdFront) {
+        // Too close to a wall in front, reverse
+        btSerial.println("Stuck: Too close to the front. Reversing...");
+        moveBackward(100);
+    } else if (leftDistance < stuckThresholdSides) {
+        // Too close to a wall on the left, turn right
+        btSerial.println("Stuck: Too close to the left. Turning right...");
+        moveRight(300);
+    } else if (rightDistance < stuckThresholdSides) {
+        // Too close to a wall on the right, turn left
+        btSerial.println("Stuck: Too close to the right. Turning left...");
+        moveLeft(300);
+    }
+}
+
 void loop() {  
   long frontDistance = sense();
   long leftDistance = senseLeft();
@@ -81,7 +114,7 @@ void loop() {
   if (_state == 0) {
     _leds.fill(_leds.Color(25,155,250),0,4);
     _leds.show();
-    if (frontDistance <= 5)
+    if (frontDistance <= 25)
     {
         grip(1500);
         delay(1000);
@@ -93,50 +126,45 @@ void loop() {
         delay(2500);
         _leds.fill(_leds.Color(0,255,0),0,4);
         _leds.show();
-        moveForward(1000);
+        moveForward(1250);
         stop();
         grip(985);
         delay(500);
-        moveLeftSharp(720);
-        moveForward(1150);
-        delay(1250);
+        moveLeftSharp(800);
+        moveForward(500);
         stop();
         _state++;
     }
     
   } else if (_state == 1) {
-    Serial.print("Front: "); Serial.print(frontDistance);
-    Serial.print(" | Left: "); Serial.print(leftDistance);
-    Serial.print(" | Right: "); Serial.println(rightDistance);
+    btSerial.print("Front: "); btSerial.print(frontDistance);
+    btSerial.print(" | Left: "); btSerial.print(leftDistance);
+    btSerial.print(" | Right: "); btSerial.println(rightDistance);
     delay(100);
-  
-     if (rightDistance < 15) {  // Reduced sensitivity to 15cm
-         moveRightSharp(200);
-  
-         if (frontDistance > 15) {  
-             moveForward(200);
-         } else if (leftDistance > 15) {  
-             moveLeftSharp(200);
-         } else if (frontDistance <= 7) {
-             // Move backward and turn
-             moveBackward(200);
-             delay(300);
-             spin();
-             delay(300);
-          } else if (leftDistance <= 4) {
-            moveRight(200);
-          } else if (rightDistance <= 4) {
-            moveLeft(200);
-          } else {  
-             // DEAD END - Move backward before turning
-             spin();
-             delay(300);
-        moveRight(200);
-        delay(100);
-     }  
-  } // Closing brace added here
-  } // Missing closing brace for else if (_state == 1)
-  else if (_state == 2) {
+
+    // Check if the robot is stuck
+    checkIfStuck(frontDistance, leftDistance, rightDistance);
+
+    // Right-hand rule logic
+    if (rightDistance > 18) {  // If the right is clear, turn right
+        btSerial.println("Turning right");
+        delay(70);
+        moveRightSharp(640);
+        moveForward(500);
+    } else if (frontDistance > 18) {  // If forward is clear, move forward
+        btSerial.println("Moving forward");
+        moveForward(400);
+    } else if (leftDistance > 18) {  // If left is clear, turn left
+        btSerial.println("Turning left");
+        delay(70);
+        moveLeftSharp(600);
+        moveForward(500);
+    } else {  // If all directions are blocked, reverse and turn around
+        btSerial.println("All directions blocked, reversing and turning around");
+        moveBackward(270);
+        spin();  // Turn around
+    }
+  } else if (_state == 2) {
     /* code */
   } else if (_state == 3)
   {

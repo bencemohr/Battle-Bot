@@ -2,12 +2,12 @@
 
 void moveBackward(long t) {
     _leds.clear(); 
-    _leds.fill(_leds.Color(255, 255, 255), 1, 3);
+    _leds.fill(_leds.Color(255, 255, 255), 0, 4);
     _leds.show();
     analogWrite(MOTOR_A1, 255);
     analogWrite(MOTOR_A2, 0);
     analogWrite(MOTOR_B1, 0);
-    analogWrite(MOTOR_B2, 255);
+    analogWrite(MOTOR_B2, 240);
     delay(t);
   }
   
@@ -60,7 +60,7 @@ void moveBackward(long t) {
     _leds.fill(_leds.Color(255, 255, 255), 2, 3);
     _leds.show();
     analogWrite(MOTOR_A1, 0);
-    analogWrite(MOTOR_A2, 230);
+    analogWrite(MOTOR_A2, 240);
     analogWrite(MOTOR_B1, 255);
     analogWrite(MOTOR_B2, 0);
     delay(t);
@@ -78,9 +78,9 @@ void moveBackward(long t) {
     _leds.clear();
     _leds.fill(_leds.Color(255, 0, 0), 0, 4);
     _leds.show();
-    analogWrite(MOTOR_A1, 255);
-    analogWrite(MOTOR_A2,  0);
-    analogWrite(MOTOR_B1, 255);
-    analogWrite(MOTOR_B2, 0);
-    delay(100);
+    analogWrite(MOTOR_A1, 0);
+    analogWrite(MOTOR_A2,  255);
+    analogWrite(MOTOR_B1, 0);
+    analogWrite(MOTOR_B2, 255);
+    delay(70);
   }
