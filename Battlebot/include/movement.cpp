@@ -75,6 +75,9 @@ void moveBackward(long t) {
 
   void spin()
   {
+    _leds.clear();
+    _leds.fill(_leds.Color(255, 0, 0), 0, 4);
+    _leds.show();
     analogWrite(MOTOR_A1, 255);
     analogWrite(MOTOR_A2,  0);
     analogWrite(MOTOR_B1, 255);

@@ -20,6 +20,8 @@ Ir 5 = A1
 Grip = 9
 */
 
+// Define states
+int _state  = 0; //0 = primed, 1 = solving, 2 = ending, 3 = finished/stopped
 
 // Define time
 unsigned long _timeZero = 500;
