@@ -117,6 +117,7 @@ void loop() {
     if (frontDistance <= 25)
     {
         grip(1500);
+        grip(1500);
         delay(1000);
         _leds.fill(_leds.Color(255,0,0),0,4);
         _leds.show();
@@ -126,8 +127,9 @@ void loop() {
         delay(2500);
         _leds.fill(_leds.Color(0,255,0),0,4);
         _leds.show();
-        moveForward(1250);
+        moveForward(1500);
         stop();
+        grip(985);
         grip(985);
         delay(500);
         moveLeftSharp(800);
@@ -135,8 +137,8 @@ void loop() {
         stop();
         _state++;
     }
-    
   } else if (_state == 1) {
+    // Print sensor readings for debugging
     btSerial.print("Front: "); btSerial.print(frontDistance);
     btSerial.print(" | Left: "); btSerial.print(leftDistance);
     btSerial.print(" | Right: "); btSerial.println(rightDistance);
@@ -148,21 +150,22 @@ void loop() {
     // Right-hand rule logic
     if (rightDistance > 18) {  // If the right is clear, turn right
         btSerial.println("Turning right");
-        delay(70);
-        moveRightSharp(640);
-        moveForward(500);
+        moveRightSharp(200);
+        delay(500);  // Allow time for the turn
     } else if (frontDistance > 18) {  // If forward is clear, move forward
         btSerial.println("Moving forward");
-        moveForward(400);
+        moveForward(200);
+        delay(500);  // Allow time for movement
     } else if (leftDistance > 18) {  // If left is clear, turn left
         btSerial.println("Turning left");
-        delay(70);
-        moveLeftSharp(600);
-        moveForward(500);
+        moveLeftSharp(200);
+        delay(500);  // Allow time for the turn
     } else {  // If all directions are blocked, reverse and turn around
         btSerial.println("All directions blocked, reversing and turning around");
         moveBackward(270);
+        delay(500);
         spin();  // Turn around
+        delay(500);
     }
   } else if (_state == 2) {
     /* code */

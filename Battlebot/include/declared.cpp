@@ -1,25 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include <Servo.h>
 
-/*
-NEW NOTES FROM JOEY - 03.25
-Wiring battle bot
-A1 = 11
-A2 = 10
-B1 = 6
-B2 = 5
-Front sens echo = A0
-Front sens trig = 3
-Left sens echo = A7
-Left sens trig= A6
-Right sens echo = A5
-Right sens trig = A4
-Ir(line) 3 = A3
-Ir 4 = A2
-Ir 5 = A1
-Grip = 9
-*/
-
 // Define states
 int _state  = 0; //0 = primed, 1 = solving, 2 = ending, 3 = finished/stopped
 
@@ -55,4 +36,5 @@ const int LED_PIN = 4;
 const int LED_COUNT = 4;
 Adafruit_NeoPixel _leds = Adafruit_NeoPixel(LED_COUNT,LED_PIN,NEO_RGB + NEO_KHZ800);
 // Define global calibration variables
-int BOOST = 20;
+int LOWER_LIMIT = 0;
+int UPPER_LIMIT = 0;
